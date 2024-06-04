@@ -9,5 +9,8 @@ WORKDIR /app
 # Install dependencies 
 RUN pip install -r requirements.txt 
 
+# Expose the port
+EXPOSE 8501
+
 # Entrypoint for running the app
 CMD ["python", "app.py"]

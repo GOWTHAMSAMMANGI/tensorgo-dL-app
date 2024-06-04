@@ -7,7 +7,8 @@ services:
       options:
         max-size: "10m"
         max-files: "10"
-
+    ports:
+    - "80:8501"
   logstash:
     image: logstash:7.16
     ports:
