@@ -9,18 +9,22 @@ services:
         max-files: "10"
     ports:
     - "80:8501"
+    networks:
+      - app-network
   
   logstash:
-    image: logstash:7.16-alpine
+    image: logstash:7.17.21
     ports:
       - "5044:5044"
     volumes:
       - ./logstash.conf:/usr/share/logstash/pipeline
     depends_on:
       - elasticsearch
+    networks:
+      - app-network
 
   elasticsearch:
-    image: elasticsearch:7.16-alpine
+    image: elasticsearch:7.17.21
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -29,14 +33,20 @@ services:
       - discovery.type=single-node
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
-    
+    networks:
+      - app-network
 
   kibana:
-    image: kibana:7.16-alpine
+    image: kibana:7.17.21
     ports:
       - "5601:5601"
     depends_on:
       - elasticsearch 
+    networks:
+      - app-network
 
 volumes:
   elasticsearch-data:
+
+networks:
+  app-network:
