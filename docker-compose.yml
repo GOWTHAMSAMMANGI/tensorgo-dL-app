@@ -6,7 +6,6 @@ services:
       driver: "json-file"
       options:
         max-size: "10m"
-        max-files: "10"
     ports:
     - "80:8501"
     networks:
