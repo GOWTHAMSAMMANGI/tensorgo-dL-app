@@ -1,5 +1,6 @@
 FROM tensorflow/tensorflow:2.10.0 
 
+RUN apk update && apt-get add nvidia-cuda-toolkit-11-7
 # Copy the application code
 COPY . /app
 
